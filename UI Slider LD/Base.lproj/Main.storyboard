@@ -1,14 +1,19 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11134" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12118" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11106"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="UI_Slider_LD" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -16,11 +21,50 @@
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <subviews>
+                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" minimumValueImage="miniVolume.png" maximumValueImage="maxVolume.png" translatesAutoresizingMaskIntoConstraints="NO" id="2NT-eZ-hme">
+                                <rect key="frame" x="33" y="318" width="309" height="31"/>
+                                <color key="minimumTrackTintColor" red="1" green="0.17861165270000001" blue="0.18091559930000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="maximumTrackTintColor" red="0.40000000600000002" green="0.80000001190000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="thumbTintColor" red="1" green="0.54109439479999999" blue="0.072539351079999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <connections>
+                                    <action selector="sld_Volume:" destination="BYZ-38-t0r" eventType="valueChanged" id="7IE-sX-5NT"/>
+                                </connections>
+                            </slider>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vIa-Mz-enC">
+                                <rect key="frame" x="172" y="280" width="30" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="SMQ-YA-azg"/>
+                                    <constraint firstAttribute="width" constant="30" id="lpr-VM-53x"/>
+                                </constraints>
+                                <connections>
+                                    <action selector="action_Play:" destination="BYZ-38-t0r" eventType="touchUpInside" id="bEw-Uu-aOn"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="2NT-eZ-hme" firstAttribute="top" secondItem="vIa-Mz-enC" secondAttribute="bottom" constant="8" id="Fns-CG-3pk"/>
+                            <constraint firstItem="2NT-eZ-hme" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="QAd-d0-AEu"/>
+                            <constraint firstItem="2NT-eZ-hme" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="19" id="WwN-qf-Mr2"/>
+                            <constraint firstItem="2NT-eZ-hme" firstAttribute="top" secondItem="vIa-Mz-enC" secondAttribute="bottom" constant="8" id="Xmj-2B-mtn"/>
+                            <constraint firstItem="2NT-eZ-hme" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="dm2-3o-zRJ"/>
+                            <constraint firstItem="vIa-Mz-enC" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="kvC-cD-0hO"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="2NT-eZ-hme" secondAttribute="trailing" constant="19" id="nnf-yJ-Wso"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="btn_play" destination="vIa-Mz-enC" id="ncS-NE-mPr"/>
+                        <outlet property="sld_Volume" destination="2NT-eZ-hme" id="OWb-JY-BGc"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="-1390" y="212"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="maxVolume.png" width="30" height="30"/>
+        <image name="miniVolume.png" width="30" height="30"/>
+    </resources>
 </document>
