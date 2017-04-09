@@ -11,15 +11,21 @@ import AVFoundation
 
 
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, AVAudioPlayerDelegate {
     
     
        var isPlay = true
+       var timer = Timer()
+    
+    @IBOutlet weak var iSwitch: UISwitch!
 
     @IBOutlet weak var btn_play: UIButton!
     
     var audio = AVAudioPlayer()
     
+    @IBOutlet weak var lbl_TimeLeft: UILabel!
+    @IBOutlet weak var lbl_TimeTotal: UILabel!
+    @IBOutlet weak var Sld_Duration: UISlider!
 
     @IBOutlet weak var sld_Volume: UISlider!
     
@@ -29,19 +35,51 @@ class ViewController: UIViewController {
         
         super.viewDidLoad()
         
-     
+        
+        
         
         audio = try! AVAudioPlayer(contentsOf: NSURL(fileURLWithPath:Bundle.main.path(forResource: "music", ofType:".mp3")!) as URL)
+        audio.prepareToPlay()
+        
+        addThumbImgForSlider()
+        
+        iSwitch.addTarget(self, action: #selector(switchIsChange), for: UIControlEvents.valueChanged)
+        // audio.currentTime = 298
+        
+        audio.delegate = self
+        
+//        let min: Int  = Int(audio.duration / 60)
+//        let sec: Int = Int(audio.duration.truncatingRemainder(dividingBy: 60))
+        
+ 
+ 
+        let timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(updateTimeLeft), userInfo: nil, repeats: true)
         
         
     btn_play.setImage(UIImage(named: "play.png"), for: UIControlState())
         
         
-        addThumbImgForSlider()
-        
         // Do any additional setup after loading the view, typically from a nib.
     }
 
+    
+        
+    }
+    
+
+    
+    
+    func updateTimeLeft()
+    {
+        self.lbl_TimeLeft.text = String(format: "%2.2f", audio.currentTime/60)
+        self.Sld_Duration.value = Float(audio.duration)
+    
+    }
+    
+    func switchIsChange(){
+
+    }
+    
     func addThumbImgForSlider()
     
     {
@@ -60,17 +98,8 @@ class ViewController: UIViewController {
         } else {
             audio.pause()
            btn_play.setImage(UIImage(named: "play.png"), for: UIControlState())
-          
            
         }
- 
-       //___________
-
-        
-        
-        
-        
-        
         
     }
     
@@ -89,7 +118,11 @@ class ViewController: UIViewController {
         audio.volume = (sender as AnyObject).value
     }
     
+    func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool) {
+        
+        print("Ket Thuc Bai Hat")
+    }
+    
 
 
-}
 
