@@ -44,29 +44,51 @@ class ViewController: UIViewController, AVAudioPlayerDelegate {
         addThumbImgForSlider()
         
         iSwitch.addTarget(self, action: #selector(switchIsChange), for: UIControlEvents.valueChanged)
-        audio.currentTime = 250
+        audio.currentTime = 60
         
         //audio.numberOfLoops = -1
         
         audio.delegate = self
         
-//        let min: Int  = Int(audio.duration / 60)
-//        let sec: Int = Int(audio.duration.truncatingRemainder(dividingBy: 60))
+        updateTimeLeft()
         
- 
- 
-        let timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(updateTimeLeft), userInfo: nil, repeats: true)
+        TotalTime()
+        
+        _ = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(updateTimeLeft), userInfo: nil, repeats: true)
         
         
     btn_play.setImage(UIImage(named: "play.png"), for: UIControlState())
         
+//        let minu: Int = Int(audio.duration / 60)
+//        let sec: Int = Int(audio.duration.truncatingRemainder(dividingBy: 60))
         
-        // Do any additional setup after loading the view, typically from a nib.
+        
+        
+        // Do any additional setup after loading the view, typically from a nib./
     }
 
-    
+//    func updateFrame() {
+//        let minu: Int = Int(audio.currentTime / 60)
+//        let sec: Int = Int(audio.currentTime.truncatingRemainder(dividingBy: 60))
+//        if (sec < 10 && minu < 10){
+//            self.duration.text = "0\(minu):0\(sec) "
+//            
+//        }else{
+//            if sec < 10 {
+//                self.duration.text = "\(minu):0\(sec) "
+//            } else if minu < 10 {
+//                self.duration.text = "0\(minu):\(sec) "
+//            }else{
+//                self.duration.text = "\(minu):\(sec) "
+//            }
+//            
+//        }
+
         
-    
+    func TotalTime()
+    {
+    self.lbl_TimeTotal.text = String(format: "%2.2f", audio.duration/60)
+    }
     
 
     
@@ -142,6 +164,11 @@ class ViewController: UIViewController, AVAudioPlayerDelegate {
     }
     
 
+    @IBAction func sld_Duration(_ sender: UISlider) {
+       print(sender.value)
+      
+       self.Sld_Duration.value = Float(audio.duration)
+    }
 
 
 }
