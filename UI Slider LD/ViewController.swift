@@ -44,7 +44,9 @@ class ViewController: UIViewController, AVAudioPlayerDelegate {
         addThumbImgForSlider()
         
         iSwitch.addTarget(self, action: #selector(switchIsChange), for: UIControlEvents.valueChanged)
-        // audio.currentTime = 298
+        audio.currentTime = 61.0
+        
+        audio.numberOfLoops = -1
         
         audio.delegate = self
         
@@ -64,7 +66,7 @@ class ViewController: UIViewController, AVAudioPlayerDelegate {
 
     
         
-    }
+    
     
 
     
@@ -126,3 +128,4 @@ class ViewController: UIViewController, AVAudioPlayerDelegate {
 
 
 
+}
