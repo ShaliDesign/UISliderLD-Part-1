@@ -44,9 +44,9 @@ class ViewController: UIViewController, AVAudioPlayerDelegate {
         addThumbImgForSlider()
         
         iSwitch.addTarget(self, action: #selector(switchIsChange), for: UIControlEvents.valueChanged)
-        audio.currentTime = 61.0
+        audio.currentTime = 250
         
-        audio.numberOfLoops = -1
+        //audio.numberOfLoops = -1
         
         audio.delegate = self
         
@@ -91,6 +91,12 @@ class ViewController: UIViewController, AVAudioPlayerDelegate {
         
     }
     
+    func Playbutton()
+    
+    {
+    btn_play.setImage(UIImage(named: "play.png"), for: UIControlState())
+    }
+    
     func switchImage()
     {
         if isPlay {
@@ -106,6 +112,16 @@ class ViewController: UIViewController, AVAudioPlayerDelegate {
     }
     
     
+    @IBAction func btn_Switch(_ sender: UISwitch) {
+        if (sender.isOn == true)
+        {audio.numberOfLoops = -1}
+        else {
+        audio.numberOfLoops = 0
+        Playbutton()
+        }
+        
+        
+    }
     
     
     @IBAction func action_Play(_ sender: Any) {

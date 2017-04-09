@@ -73,6 +73,9 @@
                                     <constraint firstAttribute="height" constant="31" id="mAX-ci-PgJ"/>
                                     <constraint firstAttribute="width" constant="49" id="vvi-rr-bAg"/>
                                 </constraints>
+                                <connections>
+                                    <action selector="btn_Switch:" destination="BYZ-38-t0r" eventType="valueChanged" id="6Tc-qV-dhu"/>
+                                </connections>
                             </switch>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
